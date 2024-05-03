@@ -1,0 +1,16 @@
+/.DS_Store
+/.dart_tool
+/.idea
+/.metadata
+/README.md
+/analysis_options.yaml
+/android
+/build
+/ios
+/linux
+/macos
+/pubspec.lock
+/quiz_app_flutter.iml
+/test
+/web
+/windows
