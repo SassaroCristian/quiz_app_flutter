@@ -15,6 +15,7 @@ class LandingPage extends StatelessWidget {
           child: Image.asset(
             'assets/images/quiz-logo.png',
             width: 300,
+            color: const Color.fromARGB(200, 255, 255, 255),
           ),
         ),
         const Padding(
