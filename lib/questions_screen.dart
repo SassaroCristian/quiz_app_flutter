@@ -15,13 +15,15 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   void aAnswerQuestion() {
     // 3 way of acheving the same result
     // currentQuestionIndex = currentQuestionIndex + 1;
-    // currentQuestionIndex += 1;
-    currentQuestionIndex++;
+    // currentQuestionIndex += 1; //increments the value by one, but could increment it by two or more if needed
+    setState(() {
+      currentQuestionIndex++; //increment the value by one andjust one
+    });
   }
 
   @override
   Widget build(context) {
-    final currentQuestion = questions[0];
+    final currentQuestion = questions[currentQuestionIndex];
     return SizedBox(
       width: double.infinity,
       child: Column(
@@ -34,7 +36,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           ),
           const SizedBox(height: 30),
           ...currentQuestion.getShuffledAnswers().map((answer) {
-            return AnswerButton(answerText: answer, onTap: () {});
+            return AnswerButton(answerText: answer, onTap: aAnswerQuestion);
           })
         ],
       ),
