@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app_flutter/start_button_widget.dart';
 
 class LandingPage extends StatelessWidget {
@@ -21,18 +22,16 @@ class LandingPage extends StatelessWidget {
             'assets/images/quiz-logo.png',
             width: 300,
             color: const Color.fromARGB(
-                200, 255, 255, 255), // Adjusting image color
+                255, 255, 255, 255), // Adjusting image color
           ),
         ),
         // Text widget displaying a message to the user
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 20),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20),
           child: Text(
             'Learn Flutter the fun way!!!',
-            style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: Colors.white), // Text styling
+            style: GoogleFonts.roboto(
+                color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold),
           ),
         ),
         // StartButton widget triggering a function when pressed

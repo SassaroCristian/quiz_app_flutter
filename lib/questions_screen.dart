@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app_flutter/answer_button.dart';
 import 'package:quiz_app_flutter/data/questions.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class QuestionsScreen extends StatefulWidget {
-  const QuestionsScreen({super.key});
+  const QuestionsScreen({super.key, required this.onSelectAnswer});
+
+  final void Function(String answer) onSelectAnswer;
+
   @override
   State<QuestionsScreen> createState() {
     return _QuestionsScreenState();
@@ -12,7 +16,8 @@ class QuestionsScreen extends StatefulWidget {
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
   var currentQuestionIndex = 0;
-  void aAnswerQuestion() {
+  void answerQuestion(String selectedAnswers) {
+    widget.onSelectAnswer('...');
     // 3 way of acheving the same result
     // currentQuestionIndex = currentQuestionIndex + 1;
     // currentQuestionIndex += 1; //increments the value by one, but could increment it by two or more if needed
@@ -29,14 +34,25 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            currentQuestion.text,
-            style: const TextStyle(
-                color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+            child: Text(
+              currentQuestion.text,
+              style: GoogleFonts.roboto(
+                color: Colors.white,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
           ),
           const SizedBox(height: 30),
           ...currentQuestion.getShuffledAnswers().map((answer) {
-            return AnswerButton(answerText: answer, onTap: aAnswerQuestion);
+            return AnswerButton(
+                answerText: answer,
+                onTap: () {
+                  answerQuestion(answer);
+                });
           })
         ],
       ),

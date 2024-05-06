@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AnswerButton extends StatelessWidget {
   const AnswerButton({
@@ -11,20 +12,27 @@ class AnswerButton extends StatelessWidget {
   @override
   Widget build(context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 0, horizontal: 40),
+      margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 40),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ElevatedButton(
             onPressed: onTap,
             style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-              backgroundColor: Color.fromARGB(255, 126, 0, 252),
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+              backgroundColor: const Color.fromARGB(255, 126, 0, 252),
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(6)),
             ),
-            child: Text(answerText),
+            child: Text(
+              answerText,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.roboto(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600),
+            ),
           ),
           const SizedBox(height: 20),
         ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app_flutter/data/questions.dart';
 import 'package:quiz_app_flutter/landing_page.dart';
 import 'package:quiz_app_flutter/questions_screen.dart';
 
@@ -12,6 +13,7 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+  List<String> selectedAnswers = [];
   var activeScreen = 'landing-page';
 
   // Function to switch between screens
@@ -20,6 +22,16 @@ class _QuizState extends State<Quiz> {
       // Change the active screen to QuestionsScreen
       activeScreen = 'questions-screen';
     });
+  }
+
+  void chooseAnswer(String answer) {
+    selectedAnswers.add(answer);
+    if (selectedAnswers.length == questions.length) {
+      setState(() {
+        selectedAnswers = [];
+        activeScreen = 'landing-page';
+      });
+    }
   }
 
   @override
@@ -45,7 +57,9 @@ class _QuizState extends State<Quiz> {
               // Center widget to horizontally and vertically center its child
               child: activeScreen == 'landing-page'
                   ? LandingPage(switchScreen)
-                  : const QuestionsScreen() // Display the currently active screen
+                  : QuestionsScreen(
+                      onSelectAnswer: chooseAnswer,
+                    ) // Display the currently active screen
               ),
         ),
       ),
