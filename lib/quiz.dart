@@ -12,20 +12,13 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  Widget? activeScreen; // Widget to hold the currently active screen
-
-  @override
-  void initState() {
-    // Set the initial active screen to LandingPage
-    activeScreen = LandingPage(switchScreen);
-    super.initState();
-  }
+  var activeScreen = 'landing-page';
 
   // Function to switch between screens
   void switchScreen() {
     setState(() {
       // Change the active screen to QuestionsScreen
-      activeScreen = const QuestionsScreen();
+      activeScreen = 'questions-screen';
     });
   }
 
@@ -49,9 +42,11 @@ class _QuizState extends State<Quiz> {
             ),
           ),
           child: Center(
-            // Center widget to horizontally and vertically center its child
-            child: activeScreen, // Display the currently active screen
-          ),
+              // Center widget to horizontally and vertically center its child
+              child: activeScreen == 'landing-page'
+                  ? LandingPage(switchScreen)
+                  : const QuestionsScreen() // Display the currently active screen
+              ),
         ),
       ),
     );
