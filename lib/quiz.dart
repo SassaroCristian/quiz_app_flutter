@@ -15,6 +15,7 @@ class Quiz extends StatefulWidget {
 
 class _QuizState extends State<Quiz> {
   List<String> selectedAnswers = [];
+
   var activeScreen = 'landing-page';
 
   // Function to switch between screens
@@ -25,7 +26,7 @@ class _QuizState extends State<Quiz> {
     });
   }
 
-  void chooseAnswer(String answer) {
+  void choseAnswer(String answer) {
     selectedAnswers.add(answer);
 
     if (selectedAnswers.length == questions.length) {
@@ -42,11 +43,13 @@ class _QuizState extends State<Quiz> {
 
     if (activeScreen == 'questions-screen') {
       screenWidget = QuestionsScreen(
-        onSelectAnswer: chooseAnswer,
+        onSelectAnswer: choseAnswer,
       );
     }
     if (activeScreen == 'result-screen') {
-      screenWidget = const ResultScreen();
+      screenWidget = ResultScreen(
+        chosenAnswers: selectedAnswers,
+      );
     }
     ;
     return MaterialApp(
