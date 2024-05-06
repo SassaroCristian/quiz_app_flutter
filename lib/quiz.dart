@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app_flutter/data/questions.dart';
 import 'package:quiz_app_flutter/landing_page.dart';
 import 'package:quiz_app_flutter/questions_screen.dart';
+import 'package:quiz_app_flutter/result_screen.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key}); // Constructor for Quiz widget
@@ -26,16 +27,28 @@ class _QuizState extends State<Quiz> {
 
   void chooseAnswer(String answer) {
     selectedAnswers.add(answer);
+
     if (selectedAnswers.length == questions.length) {
       setState(() {
         selectedAnswers = [];
-        activeScreen = 'landing-page';
+        activeScreen = 'result-screen';
       });
     }
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(context) {
+    Widget screenWidget = LandingPage(switchScreen);
+
+    if (activeScreen == 'questions-screen') {
+      screenWidget = QuestionsScreen(
+        onSelectAnswer: chooseAnswer,
+      );
+    }
+    if (activeScreen == 'result-screen') {
+      screenWidget = const ResultScreen();
+    }
+    ;
     return MaterialApp(
       // MaterialApp is the root widget of the app
       home: Scaffold(
@@ -54,13 +67,9 @@ class _QuizState extends State<Quiz> {
             ),
           ),
           child: Center(
-              // Center widget to horizontally and vertically center its child
-              child: activeScreen == 'landing-page'
-                  ? LandingPage(switchScreen)
-                  : QuestionsScreen(
-                      onSelectAnswer: chooseAnswer,
-                    ) // Display the currently active screen
-              ),
+            // Center widget to horizontally and vertically center its child
+            child: screenWidget, // Display the currently active screen
+          ),
         ),
       ),
     );
