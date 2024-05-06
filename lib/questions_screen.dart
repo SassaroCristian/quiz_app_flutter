@@ -11,6 +11,33 @@ class QuestionsScreen extends StatefulWidget {
 class _QuestionsScreenState extends State<QuestionsScreen> {
   @override
   Widget build(context) {
-    return const Text('What is Flutte??');
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            'the question...',
+            style: TextStyle(
+                color: Colors.white, fontSize: 29, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text('answer1'),
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text('answer2'),
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text('answer3'),
+          ),
+        ],
+      ),
+    );
   }
 }
