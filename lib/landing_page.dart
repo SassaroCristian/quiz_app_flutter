@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app_flutter/start_button_widget.dart';
 
 class LandingPage extends StatelessWidget {
-  const LandingPage({super.key});
+  const LandingPage(this.switchScreen, {super.key});
+  final void Function() switchScreen;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,10 +28,10 @@ class LandingPage extends StatelessWidget {
                 fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(
+        Padding(
+          padding: const EdgeInsets.symmetric(
               vertical: 20), // Padding between the text and the button
-          child: StartButton(),
+          child: StartButton(switchScreen),
         ),
       ],
     );

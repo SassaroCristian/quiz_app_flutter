@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class StartButton extends StatelessWidget {
-  const StartButton({super.key});
+  const StartButton(this.startQuiz, {super.key});
+  final void Function() startQuiz;
   @override
   Widget build(BuildContext context) => ElevatedButton.icon(
-        onPressed:
-            () {}, // TODO: Add functionality to start the game when pressed
+        onPressed: startQuiz,
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(
               const Color.fromARGB(255, 0, 8, 255)),
