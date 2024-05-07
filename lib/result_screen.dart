@@ -3,7 +3,10 @@ import 'package:quiz_app_flutter/data/questions.dart';
 import 'package:quiz_app_flutter/question_summary.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen({super.key, required this.chosenAnswers});
+  const ResultScreen(this.switchScreen,
+      {super.key, required this.chosenAnswers});
+
+  final void Function() switchScreen;
 
   final List<String> chosenAnswers;
 
@@ -76,7 +79,7 @@ class ResultScreen extends StatelessWidget {
                 backgroundColor: MaterialStateProperty.all<Color>(
                     Colors.blue), // Set background color to blue
               ),
-              onPressed: () {},
+              onPressed: switchScreen,
               label: const Text(
                 'Restart quiz!',
                 style: TextStyle(
