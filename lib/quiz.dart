@@ -26,9 +26,8 @@ class _QuizState extends State<Quiz> {
     });
   }
 
-  void choseAnswer(String answer) {
-    selectedAnswers.add(answer);
-
+  void choseAnswer(String data) {
+    selectedAnswers.add(data);
     if (selectedAnswers.length == questions.length) {
       setState(() {
         activeScreen = 'result-screen';

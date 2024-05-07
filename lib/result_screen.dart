@@ -25,6 +25,12 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(context) {
+    final summaryData = getSummaryData();
+    final numTotalQuestions = questions.length;
+    final numCorrectQuestions = summaryData.where((data) {
+      return data['user_answer'] == data['correct_answer'];
+    }).length;
+
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -32,15 +38,58 @@ class ResultScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('number of correct answers here...'),
+            RichText(
+              text: TextSpan(
+                style: const TextStyle(fontSize: 20, color: Colors.white),
+                children: <TextSpan>[
+                  const TextSpan(text: 'You aswered'),
+                  TextSpan(
+                    text: ' $numCorrectQuestions ',
+                    style: const TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 23,
+                    ),
+                  ),
+                  const TextSpan(text: 'out of'),
+                  TextSpan(
+                    text: ' $numTotalQuestions ',
+                    style: const TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 23,
+                    ),
+                  ),
+                  const TextSpan(text: 'questions correctly!!!!'),
+                ],
+              ),
+            ),
             const SizedBox(
               height: 30,
             ),
-            QuestionSummary(getSummaryData()),
+            QuestionSummary(summaryData),
             const SizedBox(
               height: 30,
             ),
-            TextButton(onPressed: () {}, child: const Text('Restart quiz!'))
+            TextButton.icon(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(
+                    Colors.blue), // Set background color to blue
+              ),
+              onPressed: () {},
+              label: const Text(
+                'Restart quiz!',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              icon: const Icon(
+                Icons.replay_sharp,
+                color: Colors.white,
+              ),
+            )
           ],
         ),
       ),
